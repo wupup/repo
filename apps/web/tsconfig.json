@@ -1,0 +1,15 @@
+{
+  "extends": "@tools/typescript-config/base.json",
+  "compilerOptions": {
+    "composite": true,
+    "baseUrl": ".",
+    "outDir": "./dist",
+    // "rootDir": "./src",
+    "paths": {
+      "@packages/utils": ["../../packages/utils/src"],
+      "@packages/utils/*": ["../../packages/utils/src/*"]
+    }
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules", "dist", "**/*.test.ts", "**/*.spec.ts"]
+}

@@ -1,0 +1,51 @@
+{
+  "name": "wup",
+  "version": "1.0.0",
+  "private": true,
+  "description": "My pnpm monorepo project",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "build:all": "pnpm -r run build",
+    "dev:app-vue": "pnpm --filter @wup/vue3 run dev",
+    "build:app-vue": "pnpm --filter @wup/vue3 run build",
+    "dev:web": "pnpm --filter @wup/web run dev",
+    "build:web": "pnpm --filter @wup/web run build",
+    "dev:utils": "pnpm --filter @wup/utils run dev",
+    "build:utils": "pnpm --filter @wup/utils run build",
+    "lint:prettier": "prettier --write \"**/*.{js,ts,mjs,cjs,tsx,json,css,scss,less,html,md,vue}\"",
+    "lint:eslint": "eslint",
+    "lint:spellcheck": "cspell lint \"(packages|apps)/**/*.{js,ts,mjs,cjs,tsx,json,css,scss,less,html,md,vue}\"",
+    "commit": "git-cz"
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-git"
+    }
+  },
+  "packageManager": "pnpm@10.18.2",
+  "engines": {
+    "node": ">=22.16.0",
+    "npm": ">=10.9.0",
+    "pnpm": ">=10.16.0"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.29.6",
+    "@commitlint/cli": "^20.1.0",
+    "@commitlint/config-conventional": "^20.0.0",
+    "@cspell/dict-lorem-ipsum": "^4.0.5",
+    "@eslint/js": "^9.37.0",
+    "@types/node": "^24.7.0",
+    "commitizen": "^4.3.1",
+    "cspell": "^9.2.1",
+    "cz-git": "^1.12.0",
+    "eslint": "^9.37.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.4",
+    "eslint-plugin-vue": "^10.5.0",
+    "globals": "^16.4.0",
+    "prettier": "^3.6.2",
+    "typescript": "^5.9.2",
+    "typescript-eslint": "^8.46.0"
+  }
+}
