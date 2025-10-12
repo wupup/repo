@@ -106,20 +106,24 @@ export class DrawingBoard {
     }, 100);
   }
 
-  translatePosition(posi, dx, dy) {
-    const [x, y] = posi.split(',').map(Number);
+  translatePosition(position, dx, dy) {
+    const [x, y] = position.split(',').map(Number);
     return [x + dx, y + dy].join(',');
   }
 
   drawFillRect(x, y) {
     const rect = this.rectListMap.get(`${x},${y}`);
-    rect && rect.drawFill();
+    if (rect) {
+      rect.drawFill();
+    }
     this.collectFillRect(x, y);
   }
 
   clearRect(x, y) {
     const rect = this.rectListMap.get(`${x},${y}`);
-    rect && rect.clearFill();
+    if (rect) {
+      rect.clearFill();
+    }
     this.removeFillRect(x, y);
   }
 
@@ -234,7 +238,7 @@ export class DrawingBoard {
 
 class Rectangle {
   lineWidth = 1;
-  boderColor = '#ccc';
+  borderColor = '#ccc';
   fillColor = '#409eff';
   isFill = false; // 是否填充
 
@@ -249,7 +253,7 @@ class Rectangle {
 
   draw() {
     const ctx = this.ctx;
-    ctx.strokeStyle = this.boderColor;
+    ctx.strokeStyle = this.borderColor;
     ctx.lineWidth = this.lineWidth;
 
     ctx.strokeRect(this.x, this.y, this.width, this.height);

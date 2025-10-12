@@ -1,16 +1,16 @@
 /**
  * 分布执行任务
  * @param {Function[]} tasks 任务列表
- * @param {Function} sheduler 调度器
+ * @param {Function} scheduler 调度器
  * @description
- * sheduler 接收一个函数 runChunk，runChunk 接收一个函数 isGoOn
+ * scheduler 接收一个函数 runChunk，runChunk 接收一个函数 isGoOn
  * isGoOn 用于判断是否继续执行下一个任务，返回 true 则继续执行下一个任务，返回 false 则暂停执行等待下一次调度
  */
-function performTask(tasks, sheduler) {
+function performTask(tasks, scheduler) {
   let index = 0;
 
   function _run() {
-    sheduler(isGoOn => {
+    scheduler(isGoOn => {
       while (index < tasks.length && isGoOn()) {
         tasks[index++]();
       }
