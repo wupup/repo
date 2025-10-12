@@ -50,6 +50,9 @@ importers:
       globals:
         specifier: ^16.4.0
         version: 16.4.0
+      husky:
+        specifier: ^9.1.7
+        version: 9.1.7
       prettier:
         specifier: ^3.6.2
         version: 3.6.2
@@ -84,8 +87,13 @@ importers:
 
   packages/components: {}
 
+  packages/typescript-config: {}
+
   packages/utils:
     devDependencies:
+      '@wup/typescript-config':
+        specifier: workspace:^
+        version: link:../typescript-config
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
@@ -1623,6 +1631,11 @@ packages:
 
   human-id@4.1.2:
     resolution: {integrity: sha512-v/J+4Z/1eIJovEBdlV5TYj1IR+ZiohcYGRY+qN/oC9dAfKzVT023N/Bgw37hrKCoVRBvk3bqyzpr2PP5YeTMSg==}
+    hasBin: true
+
+  husky@9.1.7:
+    resolution: {integrity: sha512-5gs5ytaNjBrh5Ow3zrvdUUY+0VxIuWVL4i9irt6friV+BqdCfmV11CQTWMiBYWHbXhco+J1kHfTOUkePhCDvMA==}
+    engines: {node: '>=18'}
     hasBin: true
 
   iconv-lite@0.4.24:
@@ -4162,6 +4175,8 @@ snapshots:
       parse-passwd: 1.0.0
 
   human-id@4.1.2: {}
+
+  husky@9.1.7: {}
 
   iconv-lite@0.4.24:
     dependencies:
