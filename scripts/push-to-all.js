@@ -5,7 +5,7 @@
 import { exec } from 'child_process';
 
 const repos = [
-  { name: 'GitHub', remote: 'origin' },
+  { name: 'GitHub', remote: 'github' },
   { name: 'Gitee', remote: 'gitee' },
 ];
 
