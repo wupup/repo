@@ -5,7 +5,6 @@ dist-ssr
 .DS_Store
 *.local
 *.log
-.vscode/
 .idea/
 npm-debug.log*
 pnpm-debug.log*

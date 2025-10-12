@@ -1,7 +1,10 @@
 {
   "name": "@wup/typescript-config",
   "version": "1.0.0",
-  "main": "tsconfig-base.json",
+  "private": true,
+  "files": [
+    "base.json"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
