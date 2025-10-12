@@ -1,0 +1,13 @@
+#!/bin/bash
+
+current_branch=$(git symbolic-ref --short HEAD)
+
+echo "自动推送到其他远程仓库..."
+
+# 推送到 GitHub
+# git push github $current_branch
+
+# 推送到 Gitee  
+git push gitee $current_branch
+
+echo "自动推送完成"

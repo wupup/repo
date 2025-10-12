@@ -18,8 +18,8 @@
     "lint:spellcheck": "cspell lint \"(packages|apps)/**/*.{js,ts,mjs,cjs,tsx,json,css,scss,less,html,md,vue}\"",
     "commit": "git-cz",
     "prepare": "husky",
-    "precommit": "",
-    "push": "node scripts/push.js"
+    "precommit": "lint-staged",
+    "push:all": "node scripts/push-to-all.js"
   },
   "config": {
     "commitizen": {
