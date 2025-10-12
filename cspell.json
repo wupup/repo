@@ -2,7 +2,7 @@
   "import": ["@cspell/dict-lorem-ipsum/cspell-ext.json"],
   "version": "0.2",
   "caseSensitive": false,
-  "dictionaries": [],
+  "dictionaries": ["custom-dictionary"],
   "dictionaryDefinitions": [
     {
       "name": "custom-dictionary",

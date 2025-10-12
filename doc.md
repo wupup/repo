@@ -9,3 +9,17 @@ pnpm -Dw add cspell @cspell/dict-lorem-ipsum
 <!-- git 提交规范 -->
 
 pnpm -Dw add @commitlint/cli @commitlint/config-conventional commitizen cz-git
+
+<!-- 添加git钩子 初始化后在 .husky/pre-commit 中添加狗子钩子命令 -->
+
+pnpm -Dw add husky
+
+pnpx husky init
+
+<!-- 检查暂存区 -->
+
+pnpm -Dw add lint-staged
+
+<!-- 其他lint工具 -->
+<!-- antfu/eslint-config -->
+<!-- eslint stylistic -->
