@@ -21,7 +21,7 @@
     "commit": "git-cz",
     "prepare": "husky",
     "precommit": "lint-staged",
-    "push:all": "node ./scripts/push-to-all.js"
+    "push": "node ./scripts/push-to-all.js"
   },
   "config": {
     "commitizen": {
@@ -59,6 +59,7 @@
     "prettier": "^3.6.2",
     "rollup": "^4.52.4",
     "rollup-plugin-postcss": "^4.0.2",
+    "rollup-plugin-vue": "^6.0.0",
     "typescript": "^5.9.2",
     "typescript-eslint": "^8.46.0"
   }

@@ -31,6 +31,7 @@ async function getRollupConfig(pkgRoot) {
   const config = await packageJson(pkgRoot);
   const tsconfigPath = path.resolve(pkgRoot, 'tsconfig.json');
   const { name, formats } = config.buildOptions || {};
+  const src = path.resolve(pkgRoot, 'src');
   const entry = path.resolve(pkgRoot, 'src/index.ts');
   const outputDir = path.resolve(pkgRoot, 'dist');
 
@@ -40,9 +41,15 @@ async function getRollupConfig(pkgRoot) {
     // external: Object.keys(config.dependencies || {}).concat(Object.keys(config.peerDependencies || {})),
     external: ['vue'],
     plugins: [
-      nodeResolve(),
+      nodeResolve({
+        extensions: ['.js', '.ts', '.vue'],
+      }),
       commonjs(),
       typescript({
+        declaration: true,
+        declarationMap: true,
+        emitDeclarationOnly: false,
+        rootDir: src,
         tsconfig: tsconfigPath,
         compilerOptions: {
           outDir: outputDir,
@@ -54,7 +61,7 @@ async function getRollupConfig(pkgRoot) {
             nodeTransforms: [
               node => {
                 if (node.type === 1 /* NodeTypes.ELEMENT */) {
-                  node.props = node.props.filter(p => {
+                  node.props = node.props.filter(prop => {
                     if (prop.type === 6 /* NodeTypes.ATTRIBUTE */) {
                       return prop.name !== 'data-testid';
                     }
@@ -80,9 +87,11 @@ async function getRollupConfig(pkgRoot) {
   for (const format of formats) {
     const outputItem = {
       format,
-      sourcemap: true,
       file: path.resolve(outputDir, `index.${format}.js`),
-      globals: { vue: 'Vue' },
+      sourcemap: true,
+      globals: {
+        vue: 'Vue',
+      },
     };
     if (format === 'iife') {
       outputItem.name = name;
@@ -112,7 +121,7 @@ export async function getRollupConfigs() {
 }
 
 export function clearDist(name) {
-  console.log('Clearing dist directory...');
+  console.log(`🧹 Cleaning dist for ${name}...`);
   const distPath = path.resolve(__dirname, '../packages', name, 'dist');
   if (fs.existsSync(distPath)) {
     fs.rmSync(distPath, { recursive: true, force: true });
