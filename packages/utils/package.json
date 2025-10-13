@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "main": "dist/index.js",
-  "module": "dist/index.mjs",
+  "module": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist/**"
@@ -15,12 +15,20 @@
     "dev": "tsup src/index.ts --format esm,cjs --watch --dts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "buildOptions": {
+    "name": "WupUtils",
+    "formats": [
+      "cjs",
+      "esm",
+      "iife"
+    ]
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "packageManager": "pnpm@10.15.1",
   "devDependencies": {
-    "@wup/typescript-config": "workspace:^",
+    "@wup/typescript-config": "workspace:*",
     "lodash": "^4.17.21",
     "tsup": "^8.4.0"
   }

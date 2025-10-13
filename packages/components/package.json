@@ -19,6 +19,17 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "buildOptions": {
+    "name": "WupVui",
+    "formats": [
+      "cjs",
+      "esm",
+      "iife"
+    ]
+  },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "@wup/typescript-config": "workspace:*"
+  }
 }

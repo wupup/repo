@@ -1,5 +1,5 @@
 export * from './format';
-export * from './validation';
+export * from './validate';
 
 export function capitalize(str: string): string {
   if (str.length === 0) return str;
