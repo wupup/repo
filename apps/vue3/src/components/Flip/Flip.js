@@ -123,6 +123,7 @@ const Flip = (function () {
 
       let allDone = false;
       while (!allDone) {
+        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
         document.body.offsetHeight; // Trigger reflow
         allDone = true;
         for (let i = 0; i < playGenerators.length; i++) {
