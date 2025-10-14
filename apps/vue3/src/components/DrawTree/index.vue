@@ -3,19 +3,23 @@ import { onMounted, ref } from 'vue';
 
 import { Graph } from './Graph';
 
-const cvsRef = ref(null);
+const cvsRef = ref<null | HTMLCanvasElement>(null);
 let ctx = null;
 
 function init() {
+  const cvs = cvsRef.value;
+  if (!cvs) return;
+
   const dpr = window.devicePixelRatio || 1;
-  cvsRef.value.width = window.innerWidth * dpr;
-  cvsRef.value.height = window.innerHeight * dpr;
-  cvsRef.value.style.transformOrigin = `0 0`;
-  cvsRef.value.style.transform = `scale(${1 / dpr})`;
-  ctx = cvsRef.value.getContext('2d');
+
+  cvs.width = window.innerWidth * dpr;
+  cvs.height = window.innerHeight * dpr;
+  cvs.style.transformOrigin = `0 0`;
+  cvs.style.transform = `scale(${1 / dpr})`;
+  ctx = cvs.getContext('2d');
   // ctx.scale(dpr, dpr);
 
-  const graph = new Graph(cvsRef.value);
+  const graph = new Graph(cvs);
   graph.draw();
 }
 
@@ -25,7 +29,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <canvas id="cvs" ref="cvsRef"></canvas>
+  <canvas id="cvs" ref="cvsRef" />
 </template>
 
 <style scoped>

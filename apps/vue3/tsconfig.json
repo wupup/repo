@@ -2,7 +2,9 @@
   "extends": "@wup/typescript-config/base.json",
   "compilerOptions": {
     "types": [],
-    "lib": ["esnext", "DOM"]
+    "lib": ["esnext", "DOM"],
+    "allowJs": false
   },
-  "includes": ["src/**/*"]
+  "includes": ["src/**/*"],
+  "exclude": ["node_modules", "dist/**"]
 }

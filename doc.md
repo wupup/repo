@@ -23,3 +23,7 @@ pnpm -Dw add lint-staged
 <!-- 其他lint工具 -->
 <!-- antfu/eslint-config -->
 <!-- eslint stylistic -->
+
+<!-- 单元测试 vitest -->
+
+pnpm -Dw add vitest @vitest/browser vitest-browser-vue vue

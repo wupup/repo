@@ -22,7 +22,9 @@ function toggleTools(e) {
 }
 
 function clear() {
-  drawingBoard && drawingBoard.clearBoard();
+  if (drawingBoard) {
+    drawingBoard.clearBoard();
+  }
 }
 
 function getFillList() {
@@ -31,10 +33,12 @@ function getFillList() {
 </script>
 
 <template>
-  <canvas id="my-canvas" width="100" height="100" ref="canvasRef"></canvas>
+  <canvas id="my-canvas" ref="canvasRef" width="100" height="100" />
 
   <div class="tools" @click.stop>
-    <button @click="toggleTools">{{ isRubber ? '画笔' : '橡皮' }}</button>
+    <button @click="toggleTools">
+      {{ isRubber ? '画笔' : '橡皮' }}
+    </button>
     <button @click="clear">清空</button>
     <button @click="getFillList">获取填充方格</button>
   </div>

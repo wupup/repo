@@ -11,7 +11,7 @@ const repos = [
 
 async function pushToRepo(repo) {
   return new Promise((resolve, reject) => {
-    console.log(`📦 Pushing to ${repo.name}...`);
+    console.log(`📤 Pushing to ${repo.name}...`);
 
     exec(`git push ${repo.remote}`, (error, stdout, stderr) => {
       if (error) {

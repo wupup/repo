@@ -6,7 +6,7 @@ import eslintPluginVue from 'eslint-plugin-vue';
 import globals from 'globals';
 import eslintConfigPrettier from 'eslint-config-prettier';
 
-const ignores = ['**/node_modules/**', '**/dist/**', 'scripts/**', '**/*.d.ts', '*.config.js'];
+const ignores = ['**/node_modules/**', '**/dist/**', 'scripts/**', '**/*.d.ts', '*.config.js', '**/*.md'];
 
 export default defineConfig(
   // 通用配置
@@ -23,7 +23,8 @@ export default defineConfig(
     },
     rules: {
       'no-var': 'error',
-      // "no-unused-vars": "warn",
+      'no-unused-vars': 'off',
+      '@typescript-eslint/no-unused-vars': 'off',
       'no-console': 'off',
       'prettier/prettier': 'error',
     },
@@ -32,16 +33,17 @@ export default defineConfig(
   // 前端配置
   {
     ignores,
-    files: [
-      'apps/**/*.{js,ts,jsx,tsx,vue}',
-      'packages/components/**/*.{js,ts,jsx,tsx,vue}',
-      'docs/**/*.{js,ts,jsx,tsx,vue}',
-    ],
+    files: ['apps/**/*.{js,ts,jsx,tsx,vue}', 'packages/**/*.{js,ts,jsx,tsx,vue}', 'docs/**/*.{js,ts,jsx,tsx,vue}'],
     extends: [...eslintPluginVue.configs['flat/recommended']],
     languageOptions: {
       globals: {
         ...globals.browser,
       },
+    },
+    rules: {
+      'vue/multi-word-component-names': 'off',
+      'vue/max-attributes-per-line': 'off',
+      'vue/singleline-html-element-content-newline': 'off',
     },
   },
 

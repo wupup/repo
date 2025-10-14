@@ -10,7 +10,8 @@
     "vue": "^3.0.0"
   },
   "devDependencies": {
-    "@wup/typescript-config": "workspace:^",
+    "@wup/typescript-config": "workspace:*",
+    "@wup/components": "workspace:^",
     "@vitejs/plugin-vue": "^6.0.0",
     "vite": "^7.0.0"
   }

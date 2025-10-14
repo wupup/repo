@@ -1,11 +1,17 @@
-import getRandom from '../../utils/getRandom';
+// import getRandom from '../../utils/getRandom';
 
 import { Point } from './Point';
 
 class Graph {
-  constructor(cvs, count = 100, maxDis = 200) {
+  cvs: HTMLCanvasElement;
+  ctx: CanvasRenderingContext2D;
+  points: Point[];
+  maxDis: number;
+  hasMousePoint: boolean;
+
+  constructor(cvs: HTMLCanvasElement, count = 100, maxDis = 200) {
     this.cvs = cvs;
-    this.ctx = cvs.getContext('2d');
+    this.ctx = cvs.getContext('2d')!;
     this.points = new Array(count).fill(0).map(() => new Point(cvs, 2));
     this.maxDis = maxDis;
     this.hasMousePoint = false;
@@ -20,13 +26,13 @@ class Graph {
     ctx.clearRect(0, 0, this.cvs.width, this.cvs.height);
 
     for (let i = 0; i < len; i++) {
-      const p1 = points[i];
+      const p1 = points[i]!;
       const x1 = p1.x;
       const y1 = p1.y;
       p1.draw();
 
       for (let j = 0; j < len; j++) {
-        const p2 = points[j];
+        const p2 = points[j]!;
         const x2 = p2.x;
         const y2 = p2.y;
         const dis = Math.sqrt((x1 - x2) ** 2 + (y1 - y2) ** 2);
@@ -64,18 +70,18 @@ class Graph {
   mousePoint() {
     const dpr = window.devicePixelRatio || 1;
 
-    this.cvs.addEventListener('mouseenter', e => {
+    this.cvs.addEventListener('mouseenter', () => {
       this.points.unshift(new Point(this.cvs, 1));
       this.hasMousePoint = true;
     });
 
-    this.cvs.addEventListener('mouseleave', e => {
+    this.cvs.addEventListener('mouseleave', () => {
       this.points.shift();
       this.hasMousePoint = false;
     });
 
     this.cvs.addEventListener('mousemove', e => {
-      this.points[0].update(e.clientX * dpr, e.clientY * dpr);
+      this.points[0]!.update(e.clientX * dpr, e.clientY * dpr);
     });
   }
 }

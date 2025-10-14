@@ -2,7 +2,11 @@
   "extends": "@wup/typescript-config/base.json",
   "compilerOptions": {
     "types": [],
-    "lib": ["esnext", "DOM"]
+    "lib": ["esnext", "DOM"],
+    "allowJs": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true
   },
-  "includes": ["src/**/*"]
+  "includes": ["src/**/*"],
+  "exclude": ["dist/**/*"]
 }

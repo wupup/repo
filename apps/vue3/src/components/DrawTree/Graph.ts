@@ -1,16 +1,19 @@
 class Graph {
-  constructor(cvs) {
+  cvs;
+  ctx;
+
+  constructor(cvs: HTMLCanvasElement) {
     this.cvs = cvs;
     this.ctx = cvs.getContext('2d');
-    this.ctx.translate(cvs.width / 2, cvs.height);
-    this.ctx.scale(1, -1);
+    this.ctx!.translate(cvs.width / 2, cvs.height);
+    this.ctx!.scale(1, -1);
   }
 
   draw() {
-    const ctx = this.ctx;
+    const ctx = this.ctx!;
     ctx.clearRect(0, 0, this.cvs.width, this.cvs.height);
 
-    const drawBranch = (x, y, len, thick = 30, angle = 90) => {
+    const drawBranch = (x: number, y: number, len: number, thick = 30, angle = 90) => {
       if (thick < 10 && Math.random() < 0.3) {
         return;
       }

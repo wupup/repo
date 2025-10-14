@@ -4,8 +4,12 @@ import URL from 'node:url';
 
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
-import typescript from '@rollup/plugin-typescript';
+
 import vue from '@vitejs/plugin-vue';
+import typescript from '@rollup/plugin-typescript';
+import esbuild from 'rollup-plugin-esbuild';
+
+import scss from 'rollup-plugin-scss';
 import postcss from 'rollup-plugin-postcss';
 
 const __filename = URL.fileURLToPath(import.meta.url);
@@ -42,18 +46,7 @@ async function getRollupConfig(pkgRoot) {
     external: ['vue'],
     plugins: [
       nodeResolve({
-        extensions: ['.js', '.ts', '.vue'],
-      }),
-      commonjs(),
-      typescript({
-        declaration: true,
-        declarationMap: true,
-        emitDeclarationOnly: false,
-        rootDir: src,
-        tsconfig: tsconfigPath,
-        compilerOptions: {
-          outDir: outputDir,
-        },
+        extensions: ['.js', '.ts', '.vue', '.tsx', '.jsx'],
       }),
       vue({
         template: {
@@ -73,13 +66,32 @@ async function getRollupConfig(pkgRoot) {
           },
         },
       }),
+      typescript({
+        declaration: true,
+        declarationMap: true,
+        emitDeclarationOnly: true,
+        declarationDir: outputDir,
+        rootDir: src,
+        tsconfig: tsconfigPath,
+        compilerOptions: {
+          outDir: outputDir,
+        },
+      }),
+      esbuild({
+        target: 'es2020',
+        tsconfig: tsconfigPath,
+        loaders: {
+          '.vue': 'ts',
+        },
+      }),
+      commonjs(),
+      scss(),
       postcss({
         extract: true,
         minimize: true,
-        sourceMap: false,
+        sourceMap: true,
       }),
     ],
-    dir: outputDir,
     output: [],
   };
 
@@ -92,6 +104,7 @@ async function getRollupConfig(pkgRoot) {
       globals: {
         vue: 'Vue',
       },
+      assetFileNames: 'assets/[name]-[hash][extname]',
     };
     if (format === 'iife') {
       outputItem.name = name;

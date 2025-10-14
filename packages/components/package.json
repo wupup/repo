@@ -2,8 +2,8 @@
   "name": "@wup/components",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
+  "main": "dist/index.esm.js",
+  "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
   "engines": {
     "node": ">=18",
@@ -11,8 +11,8 @@
   },
   "exports": {
     ".": {
-      "require": "./dist/index.js",
-      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs.js",
+      "import": "./dist/index.esm.js",
       "types": "./dist/index.d.ts"
     }
   },
@@ -30,7 +30,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@wup/typescript-config": "workspace:*"
+    "@wup/typescript-config": "workspace:*",
+    "@wup/utils": "workspace:*"
   },
   "peerDependencies": {
     "vue": "^3.5.0"

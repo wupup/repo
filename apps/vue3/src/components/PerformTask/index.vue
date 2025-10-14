@@ -10,11 +10,11 @@ onMounted(() => {
     container.appendChild(div);
   });
 
-  function normalRun() {
-    performTask(tasks, runChunk => {
-      runChunk(_ => true);
-    });
-  }
+  // function normalRun() {
+  //   performTask(tasks, runChunk => {
+  //     runChunk(() => true);
+  //   });
+  // }
   // normalRun();
   // idlePerformTask(tasks);
   // rafPerformTask(tasks, 10);
@@ -23,7 +23,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="dom-container"></div>
+  <div class="dom-container" />
 </template>
 
 <style lang="scss" scoped></style>

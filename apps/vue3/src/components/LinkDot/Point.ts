@@ -1,9 +1,16 @@
 import getRandom from '../../utils/getRandom';
 
 class Point {
-  constructor(cvs, r = 2) {
+  cvs: HTMLCanvasElement;
+  ctx: CanvasRenderingContext2D;
+  r: number;
+  x: number;
+  y: number;
+  moveAngle: number;
+
+  constructor(cvs: HTMLCanvasElement, r = 2) {
     this.cvs = cvs;
-    this.ctx = cvs.getContext('2d');
+    this.ctx = cvs.getContext('2d')!;
     this.r = r;
     this.x = getRandom(this.r, cvs.width - this.r);
     this.y = getRandom(this.r, cvs.height - this.r);
@@ -19,7 +26,7 @@ class Point {
     ctx.fill();
   }
 
-  update(x, y) {
+  update(x?: number, y?: number) {
     if (x != null && y != null) {
       this.x = x;
       this.y = y;

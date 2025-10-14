@@ -3,11 +3,14 @@ import { onMounted, ref } from 'vue';
 
 import { Graph } from './Graph';
 
-const cvsRef = ref(null);
+const cvsRef = ref<HTMLCanvasElement | null>(null);
 let ctx = null;
 
 function init() {
+  if (!cvsRef.value) return;
+
   const dpr = window.devicePixelRatio || 1;
+
   cvsRef.value.width = window.innerWidth * dpr;
   cvsRef.value.height = window.innerHeight * dpr;
   cvsRef.value.style.transformOrigin = `0 0`;
@@ -26,7 +29,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <canvas id="cvs" ref="cvsRef"></canvas>
+  <canvas id="cvs" ref="cvsRef" />
 </template>
 
 <style scoped>

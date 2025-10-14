@@ -1,16 +1,18 @@
 <script setup>
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
-import DrawingBoard from './components/DrawingBoard/index.vue';
-import LinkDot from './components/LinkDot/index.vue';
-import DrawTree from './components/DrawTree/index.vue';
-import Flip from './components/Flip/index.vue';
-import MusicPlayer from './components/MusicPlayer/index.vue';
-import PerformTask from './components/PerformTask/index.vue';
+// import DrawingBoard from './components/DrawingBoard/index.vue';
+// import LinkDot from './components/LinkDot/index.vue';
+// import DrawTree from './components/DrawTree/index.vue';
+// import Flip from './components/Flip/index.vue';
+// import MusicPlayer from './components/MusicPlayer/index.vue';
+// import PerformTask from './components/PerformTask/index.vue';
+
+import { HelloWorld } from '@wup/components';
 </script>
 
 <template>
-  <DrawingBoard />
+  <HelloWorld />
 </template>
 
 <style>
