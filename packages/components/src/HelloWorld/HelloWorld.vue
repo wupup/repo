@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onBeforeUnmount, onUnmounted, ref } from 'vue';
 
-import { formatDate } from '@wup/utils';
+import { formatDate } from '@wupup/utils';
 
 defineOptions({ name: 'HelloWorld' });
 
@@ -35,7 +35,7 @@ const date = ref('');
 
 <template>
   <div class="hello-world">
-    <span class="red">{{ msg }} </span>
+    <span class="red" data-testid="n1">{{ msg }} </span>
     <span>{{ date }} </span>
   </div>
 </template>

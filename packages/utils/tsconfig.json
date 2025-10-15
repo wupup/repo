@@ -1,5 +1,5 @@
 {
-  "extends": "@wup/typescript-config/base.json",
+  "extends": "@wupup/typescript-config/base.json",
   "compilerOptions": {
     "types": [],
     "lib": ["esnext"]

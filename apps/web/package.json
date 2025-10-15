@@ -1,5 +1,5 @@
 {
-  "name": "@wup/web",
+  "name": "@wupup/web",
   "description": "",
   "version": "1.0.0",
   "private": true,
@@ -16,7 +16,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@wup/utils": "workspace:^",
+    "@wupup/utils": "workspace:^",
     "tsup": "^8.4.0"
   }
 }

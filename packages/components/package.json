@@ -1,5 +1,5 @@
 {
-  "name": "@wup/components",
+  "name": "@wupup/components",
   "version": "1.0.0",
   "description": "",
   "main": "dist/index.esm.js",
@@ -30,8 +30,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@wup/typescript-config": "workspace:*",
-    "@wup/utils": "workspace:*"
+    "@wupup/typescript-config": "workspace:*",
+    "@wupup/utils": "workspace:*"
   },
   "peerDependencies": {
     "vue": "^3.5.0"

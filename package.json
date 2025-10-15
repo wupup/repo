@@ -1,5 +1,5 @@
 {
-  "name": "wup",
+  "name": "wupup",
   "version": "1.0.0",
   "private": true,
   "description": "My pnpm monorepo project",
@@ -9,19 +9,21 @@
     "build": "node ./scripts/build.js",
     "dev": "node ./scripts/dev.js",
     "build:all": "pnpm -r run build",
-    "dev:app-vue": "pnpm --filter @wup/vue3 run dev",
-    "build:app-vue": "pnpm --filter @wup/vue3 run build",
-    "dev:web": "pnpm --filter @wup/web run dev",
-    "build:web": "pnpm --filter @wup/web run build",
-    "dev:utils": "pnpm --filter @wup/utils run dev",
-    "build:utils": "pnpm --filter @wup/utils run build",
+    "dev:app-vue": "pnpm --filter @wupup/vue3 run dev",
+    "build:app-vue": "pnpm --filter @wupup/vue3 run build",
+    "dev:web": "pnpm --filter @wupup/web run dev",
+    "build:web": "pnpm --filter @wupup/web run build",
+    "dev:utils": "pnpm --filter @wupup/utils run dev",
+    "build:utils": "pnpm --filter @wupup/utils run build",
     "lint:prettier": "prettier --write \"**/*.{js,ts,mjs,cjs,tsx,json,css,scss,less,html,md,vue}\"",
     "lint:eslint": "eslint",
     "lint:spellcheck": "cspell lint \"(packages|apps)/**/*.{js,ts,mjs,cjs,tsx,json,css,scss,less,html,md,vue}\"",
+    "test": "vitest",
     "commit": "git-cz",
     "prepare": "husky",
     "precommit": "lint-staged",
-    "push": "node ./scripts/push-to-all.js"
+    "push": "node ./scripts/push-to-all.js",
+    "publish:utils": "pnpm --filter \"@wupup/utils\" publish --no-git-checks"
   },
   "config": {
     "commitizen": {

@@ -8,7 +8,7 @@ import Flip from './components/Flip/index.vue';
 import MusicPlayer from './components/MusicPlayer/index.vue';
 import PerformTask from './components/PerformTask/index.vue';
 
-import { HelloWorld } from '@wup/components';
+import { HelloWorld } from '@wupup/components';
 </script>
 
 <template>

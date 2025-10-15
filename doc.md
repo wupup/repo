@@ -27,3 +27,5 @@ pnpm -Dw add lint-staged
 <!-- 单元测试 vitest -->
 
 pnpm -Dw add vitest @vitest/browser vitest-browser-vue vue
+
+<!-- 版本管理 Rush -->
