@@ -54,6 +54,7 @@ async function getRollupConfig(pkgRoot) {
             nodeTransforms: [
               node => {
                 if (node.type === 1 /* NodeTypes.ELEMENT */) {
+                  // Remove `data-testid` attributes
                   node.props = node.props.filter(prop => {
                     if (prop.type === 6 /* NodeTypes.ATTRIBUTE */) {
                       return prop.name !== 'data-testid';

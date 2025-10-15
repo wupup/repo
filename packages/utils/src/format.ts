@@ -1,4 +1,4 @@
-export function formatDate(date: Date | number, pattern = 'YYYY-MM-DD'): string {
+function formatDate(date: Date | number, pattern = 'YYYY-MM-DD'): string {
   let result = pattern;
   const d = new Date(date);
   const year = d.getFullYear();
@@ -18,3 +18,5 @@ export function formatDate(date: Date | number, pattern = 'YYYY-MM-DD'): string 
 
   return result;
 }
+
+export { formatDate };

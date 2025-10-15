@@ -7,7 +7,4 @@ function isPhone(phone: string): boolean {
   return phoneRegex.test(phone);
 }
 
-export default {
-  isObject,
-  isPhone,
-};
+export { isObject, isPhone };
