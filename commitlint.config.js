@@ -87,6 +87,7 @@ export default {
       { name: 'apps' },
       { name: 'components' },
       { name: 'utils' },
+      { name: 'utils-web' },
       { name: 'styles' },
       { name: 'docs' },
       { name: 'tests' },

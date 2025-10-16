@@ -1,5 +1,5 @@
 {
-  "name": "@wupup/utils",
+  "name": "@wupup/utils-web",
   "version": "1.0.0",
   "private": false,
   "type": "module",
@@ -16,7 +16,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "buildOptions": {
-    "name": "WupUtils",
+    "name": "WupUtilsWeb",
     "formats": [
       "cjs",
       "esm",
@@ -32,7 +32,11 @@
   },
   "packageManager": "pnpm@10.15.1",
   "devDependencies": {
-    "@wupup/typescript-config": "workspace:*"
+    "@types/spark-md5": "^3.0.5",
+    "@wupup/typescript-config": "workspace:*",
+    "lodash": "^4.17.21"
   },
-  "dependencies": {}
+  "dependencies": {
+    "spark-md5": "^3.0.2"
+  }
 }

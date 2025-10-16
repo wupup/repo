@@ -15,7 +15,7 @@ import postcss from 'rollup-plugin-postcss';
 const __filename = URL.fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const packageNames = ['utils', 'components'];
+const packageNames = ['utils', 'utils-web', 'components'];
 
 function getPackagePath(packageName) {
   return path.resolve(__dirname, '../packages', packageName);

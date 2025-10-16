@@ -1,5 +1,6 @@
 dist
 public
+./libs
 node_modules
 .local
 pnpm-lock.yaml
