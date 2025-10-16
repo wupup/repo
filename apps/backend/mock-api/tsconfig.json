@@ -1,0 +1,9 @@
+{
+  "extends": "@wupup/typescript-config/base.json",
+  "compilerOptions": {
+    "types": ["node"],
+    "lib": ["esnext"]
+  },
+  "includes": ["src/**/*"],
+  "exclude": ["node_modules", "dist/**"]
+}

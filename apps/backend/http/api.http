@@ -1,0 +1,22 @@
+@hostname = localhost
+@port = 9527
+@host = {{hostname}}:{{port}}
+@contentType = application/json
+
+GET http://{{host}}/api/hero-list HTTP/1.1
+content-type: {{contentType}}
+
+{
+  "name": "sample",
+  "time": "Wed, 21 Oct 2015 18:27:50 GMT"
+}
+
+###
+
+GET http://{{host}}/api/error HTTP/1.1
+content-type: {{contentType}}
+
+{
+  "name": "sample",
+  "time": "Wed, 21 Oct 2015 18:27:50 GMT"
+}
