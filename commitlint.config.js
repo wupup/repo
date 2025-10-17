@@ -85,6 +85,7 @@ export default {
     scopes: [
       { name: 'root' },
       { name: 'apps' },
+      { name: 'backend' },
       { name: 'components' },
       { name: 'utils' },
       { name: 'utils-web' },
