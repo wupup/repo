@@ -1,33 +1,12 @@
-import { Router, Request, Response } from 'express';
-import axios from 'axios';
+import type { Router } from 'express';
+import express from 'express';
 
-import { getSuccessResponseResult, getCommonErrorResponseResult } from '../utils/get-response';
+import * as apiController from '../controllers/api';
 
-const apiRouter: Router = Router();
+const apiRouter: Router = express.Router();
 
-const URLS = {
-  HERO_LIST: 'https://pvp.qq.com/web201605/js/herolist.json', // 王者荣耀英雄列表
-};
+apiRouter.get('/hero-list', apiController.hero_list_get);
 
-apiRouter.get('/hero-list', async (req: Request, res: Response) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  try {
-    const response = await axios.get(URLS.HERO_LIST);
-    res.json(getSuccessResponseResult(response.data));
-  } catch (error) {
-    res.status(500).json(getCommonErrorResponseResult('Failed to fetch data'));
-  }
-});
+apiRouter.get('/error', apiController.error_get);
 
-apiRouter.get('/error', async (req: Request, res: Response) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  try {
-    throw new Error('请求失败');
-    const data = [];
-    res.json(getSuccessResponseResult(data));
-  } catch (error) {
-    res.status(500).json(getCommonErrorResponseResult((error as Error).message || 'Failed to fetch data'));
-  }
-});
-
-export { apiRouter };
+export default apiRouter;

@@ -1,6 +1,6 @@
 import express from 'express';
 
-import { apiRouter } from './router/api';
+import apiRouter from './router/api';
 import { config } from './config/index';
 
 const app = express();
