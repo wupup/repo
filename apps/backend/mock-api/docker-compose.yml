@@ -1,17 +1,31 @@
-version: '4.54'
+version: "4.55"
 
 services:
-  mysql:
-    image: mysql:8.3.0
-    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci
-    container_name: mock-api-mysql
+  postgresql:
+    image: bitnami/postgresql:latest
+    container_name: mock-api-postgresql
     environment:
-      MYSQL_ROOT_PASSWORD: 123456
-      MYSQL_DATABASE: mock_api_db
-      MYSQL_USER: mock_user
-      MYSQL_PASSWORD: 123456
-      MYSQL_LOWER_CASE_TABLE_NAMES: 0
+      - 'ALLOW_EMPTY_PASSWORD=yes'
+      - 'POSTGRESQL_USER=mock_user'
+      - 'POSTGRESQL_PASSWORD=12306600'
     ports:
-      - "3306:3306"
+      - "5432:5432"
     volumes:
-      - ./data/mysql:/var/lib/mysql
+      - ./data/postgresql_data:/bitnami/postgresql
+
+  redis:
+    image: redis:8.4.0
+    container_name: mock-api-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./data/redis:/data
+
+  rabbitmq:
+    image: rabbitmq:4.2
+    container_name: mock-api-rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - ./data/rabbitmq:/var/lib/rabbitmq

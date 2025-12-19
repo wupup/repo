@@ -71,10 +71,11 @@ export function throttle<T extends (...args: any[]) => any>(
   };
 
   // 节流函数主体
-  const throttled = function (ctx: any, ...args: Parameters<T>): ReturnType<T> | undefined {
+  const throttled = function (this: any, ...args: Parameters<T>): ReturnType<T> | undefined {
     const now = Date.now();
     lastArgs = args;
-    lastThis = ctx;
+    // eslint-disable-next-line @typescript-eslint/no-this-alias
+    lastThis = this;
 
     // 计算剩余时间
     const remaining = wait - (now - lastExecuteTime);

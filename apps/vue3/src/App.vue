@@ -10,16 +10,16 @@ import PerformTask from './components/PerformTask/index.vue';
 
 import { HelloWorld } from '@wupup/components';
 
-import { uploadLargeFile } from '@wupup/utils-web';
+// import { uploadLargeFile } from '@wupup/utils-web';
 
-const onInputChange = e => {
-  const file = e.target.files[0];
-  uploadLargeFile(file, 1);
-};
+// const onInputChange = e => {
+//   const file = e.target.files[0];
+//   uploadLargeFile(file, 1);
+// };
 </script>
 
 <template>
-  <HelloWorld />
+  <LinkDot />
 
   <div>
     <input type="file" @change="onInputChange" />
