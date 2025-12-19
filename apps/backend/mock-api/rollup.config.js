@@ -14,7 +14,7 @@ const dist = path.resolve(__dirname, 'dist');
 const src = path.resolve(__dirname, 'src');
 
 export default defineConfig({
-  input: './src/index.ts',
+  input: './src/app.ts',
   output: [
     {
       file: path.resolve(dist, 'index.cjs.js'),

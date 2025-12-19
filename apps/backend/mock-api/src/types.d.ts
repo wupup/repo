@@ -1,6 +1,7 @@
 declare namespace Express {
   interface Request {
     timestemp: string;
+    userId: string | undefined;
   }
 }
 
