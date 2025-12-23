@@ -1,17 +1,13 @@
 #!/usr/bin/env node
 
-// const app = require('../app');
-// const debug = require('debug')('express-locallibrary-tutorial:server');
-// const http = require('http');
-
 import http from 'http';
 
-import app from '../dist/index.esm.js';
+import app from '../src/app.js';
 
 /**
  * Get port from environment and store in Express.
  */
-let port = normalizePort(process.env.PORT || '8000');
+const port = normalizePort(process.env.PORT || '8000');
 app.set('port', port);
 
 /**
