@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+  <title>Test</title>
+</head>
+
+<body>
+  <div>TEST</div>
+
+  <script>
+    fetch('/api/hero/list')
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+      });
+  </script>
+</body>
+
+</html>

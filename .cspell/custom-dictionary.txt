@@ -3,3 +3,7 @@ gitee
 johnsoncodehk
 wupup
 yhfg
+bitnami
+rabbitmq
+addgroup
+adduser

@@ -18,7 +18,6 @@ const corsOptions = {
 };
 
 console.log('crypto =>> ', crypto.randomBytes(32).toString('hex'));
-
 app.use(morgan('combined'));
 
 app.use(express.static(path.join(import.meta.dirname, 'public')));

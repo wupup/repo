@@ -3,11 +3,10 @@ version: "4.55"
 services:
   postgresql:
     image: bitnami/postgresql:latest
-    container_name: mock-api-postgresql
+    container_name: wind-api-postgresql
     environment:
-      - 'ALLOW_EMPTY_PASSWORD=yes'
-      - 'POSTGRESQL_USER=mock_user'
-      - 'POSTGRESQL_PASSWORD=12306600'
+      - POSTGRESQL_USERNAME=wind_user
+      - POSTGRESQL_PASSWORD=123123
     ports:
       - "5432:5432"
     volumes:
@@ -15,7 +14,7 @@ services:
 
   redis:
     image: redis:8.4.0
-    container_name: mock-api-redis
+    container_name: wind-api-redis
     ports:
       - "6379:6379"
     volumes:
@@ -23,7 +22,7 @@ services:
 
   rabbitmq:
     image: rabbitmq:4.2
-    container_name: mock-api-rabbitmq
+    container_name: wind-api-rabbitmq
     ports:
       - "5672:5672"
       - "15672:15672"
