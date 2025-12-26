@@ -8,12 +8,13 @@ RUN addgroup -g 1001 -S appgrop && \
 
 COPY ./package*.json ./
 
-RUN npm cache clean --force && \
+RUN npm cache clean && \
     npm install -g pnpm && \
-    pnpm install --production && \
-    pnpx prisma generate
+    pnpm install --production
 
 COPY . .
+
+RUN pnpm db:generate
 
 RUN chown -R appuser:appgrop /app
 USER appuser
