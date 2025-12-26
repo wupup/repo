@@ -8,9 +8,8 @@ RUN addgroup -g 1001 -S appgrop && \
 
 COPY ./package*.json ./
 
-RUN npm cache clean --force && \
-    npm install -g pnpm && \
-    pnpm install --production
+RUN npm install -g pnpm && \
+    pnpm install --frozen-lockfile --reporter=append-only --unsafe-perm
 
 COPY . .
 
