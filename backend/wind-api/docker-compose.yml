@@ -2,15 +2,16 @@ version: "4.55"
 
 services:
   postgresql:
-    image: bitnami/postgresql:latest
-    container_name: wind-api-postgresql
+    image: postgres:18.1
+    container_name: wind-api-postgres
     environment:
-      - POSTGRESQL_USERNAME=wind_user
-      - POSTGRESQL_PASSWORD=123123
+      POSTGRES_PASSWORD: 123123
+      POSTGRES_USER: postgres
+      POSTGRES_DB: wind_db
     ports:
       - "5432:5432"
     volumes:
-      - ./data/postgresql_data:/bitnami/postgresql
+      - ./data/postgres_data:/var/lib/postgresql
 
   redis:
     image: redis:8.4.0

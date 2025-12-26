@@ -5,5 +5,4 @@ wupup
 yhfg
 bitnami
 rabbitmq
-addgroup
-adduser
+autoincrement

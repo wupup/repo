@@ -50,8 +50,8 @@ export default defineConfig(
 
   // 后端配置
   {
-    ignores,
-    files: ['apps/backend/**/*.{js,ts}', 'scripts/**/*.{js,ts}'],
+    ignores: [...ignores, 'backend/**/generated/**/*'],
+    files: ['backend/**/*.{js,ts}', 'scripts/**/*.{js,ts}'],
     languageOptions: {
       globals: {
         ...globals.node,

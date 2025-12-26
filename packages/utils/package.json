@@ -31,8 +31,16 @@
     "registry": "https://registry.npmjs.org/"
   },
   "packageManager": "pnpm@10.15.1",
+  "dependencies": {},
   "devDependencies": {
-    "@wupup/typescript-config": "workspace:*"
-  },
-  "dependencies": {}
+    "@wupup/typescript-config": "workspace:*",
+    "@rollup/plugin-alias": "^5.1.1",
+    "@rollup/plugin-commonjs": "^28.0.7",
+    "@rollup/plugin-json": "^6.1.0",
+    "@rollup/plugin-node-resolve": "^16.0.3",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-typescript": "^12.1.4",
+    "rollup": "^4.52.4",
+    "rollup-plugin-esbuild": "^6.2.1"
+  }
 }

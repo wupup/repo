@@ -43,6 +43,7 @@ export default defineConfig({
       declaration: true,
       outDir: dist,
     }),
+    // eslint-disable-next-line no-undef
     process.env.NODE_ENV === 'production' ? terser() : null,
   ],
   external: ['express', 'axios'],

@@ -5,3 +5,4 @@ node_modules
 .local
 pnpm-lock.yaml
 .vscode
+**/generated/prisma
