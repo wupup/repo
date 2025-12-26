@@ -18,6 +18,14 @@ async function main() {
       password: '123123',
     },
   });
+
+  await prisma.user.create({
+    data: {
+      email: '849529321@qq.com',
+      name: 'wind',
+      password: '123123',
+    },
+  });
 }
 
 main()

@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "nodemon ./bin/www",
     "start": "node ./bin/www",
-    "db:migrate": "pnpx prisma migrate dev"
+    "db:migrate": "pnpx prisma migrate dev",
+    "db:generate": "pnpx prisma generate"
   },
   "author": "",
   "license": "ISC",
