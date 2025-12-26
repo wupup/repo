@@ -11,7 +11,7 @@ COPY ./package*.json ./
 RUN npm cache clean --force && \
     npm install -g pnpm && \
     pnpm install --production && \
-    pnpx prisma generate --binary-targets linux-musl
+    pnpx prisma generate
 
 COPY . .
 
