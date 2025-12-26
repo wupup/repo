@@ -8,7 +8,7 @@ RUN addgroup -g 1001 -S appgrop && \
 
 COPY ./package*.json ./
 
-RUN npm cache clean && \
+RUN npm cache clean --force && \
     npm install -g pnpm && \
     pnpm install --production
 
