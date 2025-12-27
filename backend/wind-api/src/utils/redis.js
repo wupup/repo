@@ -9,6 +9,7 @@ function getRedisClient() {
       keyPrefix: 'wind-api:',
       host: process.env.REDIS_HOST || '',
       port: process.env.REDIS_PORT || 6379,
+      password: process.env.REDIS_PASSWORD || '',
       retryStrategy(times) {
         if (times > 5) {
           return null; // Stop retrying after 5 attempts
