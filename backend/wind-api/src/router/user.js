@@ -10,6 +10,6 @@ router.get('/', userAuth, get_user);
 router.get('/all', get_all_user);
 router.post('/add', add_user);
 router.post('/update', userAuth, update_user);
-router.post('/modify-pwd', userAuth, modify_password);
+router.post('/modify/password', userAuth, modify_password);
 
 export default router;

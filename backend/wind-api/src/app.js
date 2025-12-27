@@ -8,6 +8,7 @@ import cors from 'cors';
 import express from 'express';
 
 import routers from './router/index.js';
+import { mailConsumer } from './utils/rabbitmq.js';
 
 const app = express();
 
@@ -18,6 +19,11 @@ const corsOptions = {
 };
 
 console.log('crypto =>> ', crypto.randomBytes(32).toString('hex'));
+
+(async () => {
+  await mailConsumer();
+  console.log('mailConsumer =>> ', '邮件队列消费者已启动');
+})();
 
 app.use(morgan('combined'));
 

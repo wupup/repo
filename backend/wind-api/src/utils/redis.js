@@ -47,7 +47,6 @@ async function getKey(key, ...params) {
   if (!key) return null;
   const redis = getRedisClient();
   const value = await redis.get(key, ...params);
-  console.log('value =>> ', value);
   try {
     return JSON.parse(value);
   } catch {

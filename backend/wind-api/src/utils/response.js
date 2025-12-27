@@ -2,21 +2,21 @@ import Errors from 'http-errors';
 
 import { RES_CODE } from './contents.js';
 
-function success(res, data = {}) {
+function success(res, data = {}, message = 'success') {
   const result = {
     code: RES_CODE.SUCCESS,
     success: true,
-    message: 'success',
+    message,
     data,
   };
   res.json(result);
 }
 
-function failure(res, err) {
+function failure(res, err, message = 'failure') {
   const result = {
     code: RES_CODE.ERROR,
     success: false,
-    message: err.message || 'failure',
+    message: err.message || message,
     data: null,
   };
 

@@ -3,7 +3,8 @@ import bcrypt from 'bcryptjs';
 
 import { prisma } from '../utils/prisma.js';
 import redis from '../utils/redis.js';
-
+import { validateEmail } from '../utils/validator.js';
+import { sendRegisterSuccessMail } from '../utils/mailer.js';
 import { success, failure } from '../utils/response.js';
 
 const getUserById = async id => {
@@ -68,6 +69,10 @@ const filterUserBody = req => {
     throw new HttpErrors.BadRequest('缺少email参数');
   }
 
+  if (!validateEmail(email)) {
+    throw new HttpErrors.BadRequest('邮箱格式不正确');
+  }
+
   if (!name) {
     throw new HttpErrors.BadRequest('缺少name参数');
   }
@@ -107,10 +112,12 @@ const get_user = async (req, res) => {
 const add_user = async (req, res) => {
   try {
     const userData = filterUserBody(req);
+
     const { password, rePassword } = req.body;
     if (!password) {
       throw new HttpErrors.BadRequest('缺少password参数');
     }
+
     if (password !== rePassword) {
       throw new HttpErrors.BadRequest('两次输入的密码不一致');
     }
@@ -135,6 +142,8 @@ const add_user = async (req, res) => {
         password: encryptedPassword,
       },
     });
+
+    sendRegisterSuccessMail(newUser.email, newUser.name);
 
     delete newUser.password;
     success(res, newUser);
