@@ -9,11 +9,9 @@ RUN addgroup -g 1001 -S appgrop && \
 COPY ./package*.json ./
 
 RUN npm install -g pnpm && \
-    pnpm install --frozen-lockfile --reporter=append-only --unsafe-perm
+    pnpm install --prod
 
 COPY . .
-
-RUN pnpm db:generate
 
 RUN chown -R appuser:appgrop /app
 USER appuser

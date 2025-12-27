@@ -11,9 +11,10 @@ export function userAuth(req, res, next) {
     }
 
     const data = jwt.verify(token, process.env.SECRET);
-    const { userId } = data;
+    const { userId, email } = data;
 
     req.userId = userId;
+    req.email = email;
     next();
   } catch (error) {
     failure(res, error);
