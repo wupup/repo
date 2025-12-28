@@ -10,8 +10,11 @@ RUN npm install -g pnpm && \
 
 COPY . .
 
+RUN pnpx prisma migrate deploy
+
 # 如果需要构建
 # RUN pnpm run build
+
 
 FROM node:22-alpine AS runner
 

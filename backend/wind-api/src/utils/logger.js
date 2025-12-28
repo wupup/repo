@@ -54,8 +54,8 @@ const logger = winston.createLogger({
   ),
   defaultMeta: { service: 'wind-api' },
   transports: [
-    new winston.transports.File({ filename: 'error.log', level: 'error' }),
-    new winston.transports.File({ filename: 'combined.log' }),
+    // new winston.transports.File({ filename: 'error.log', level: 'error' }),
+    // new winston.transports.File({ filename: 'combined.log' }),
     prismaTransport,
   ],
 });
