@@ -1,11 +1,13 @@
 import HttpErrors from 'http-errors';
 import bcrypt from 'bcryptjs';
 
+import { success, failure } from '../utils/response.js';
 import { prisma } from '../utils/prisma.js';
 import redis from '../utils/redis.js';
+import logger from '../utils/logger.js';
 import { validateEmail } from '../utils/validator.js';
 import { sendRegisterSuccessMail } from '../utils/mailer.js';
-import { success, failure } from '../utils/response.js';
+import { initStreamSSE, usersCount } from '../streams/users-count.js';
 
 const getUserById = async id => {
   id = Number(id);
@@ -78,6 +80,17 @@ const filterUserBody = req => {
   }
 
   return { email, name, avatar };
+};
+
+const get_count_users_sse = async (req, res) => {
+  try {
+    initStreamSSE(req, res);
+    setInterval(async () => {
+      await usersCount();
+    }, 5000);
+  } catch (error) {
+    failure(res, error);
+  }
 };
 
 const get_all_user = async (req, res) => {
@@ -212,4 +225,13 @@ const modify_password = async (req, res) => {
   }
 };
 
-export { get_user, get_all_user, add_user, update_user, modify_password, getUserById, validateUserPassword };
+export {
+  get_user,
+  get_all_user,
+  get_count_users_sse,
+  add_user,
+  update_user,
+  modify_password,
+  getUserById,
+  validateUserPassword,
+};

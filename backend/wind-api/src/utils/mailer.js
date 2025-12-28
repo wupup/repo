@@ -1,4 +1,5 @@
 import { createTransport, getTestMessageUrl } from 'nodemailer';
+import logger from './logger.js';
 
 // Create a transporter using SMTP
 const transporter = createTransport({
@@ -21,7 +22,7 @@ const transporter = createTransport({
 async function sendMail(mailAddress, subject, html) {
   try {
     await transporter.verify();
-    console.log('Server is ready to take our messages');
+    logger.info('Server is ready to take our messages');
 
     const info = await transporter.sendMail({
       from: process.env.MAILER_USER, // sender address
@@ -31,11 +32,11 @@ async function sendMail(mailAddress, subject, html) {
       // text: 'Hello world?', // plain text body
     });
 
-    console.log('Message sent: %s', info.messageId);
+    logger.info('Message sent: ' + info.messageId);
     // Preview URL is only available when using an Ethereal test account
-    console.log('Preview URL: %s', getTestMessageUrl(info));
+    logger.info('Preview URL: ' + getTestMessageUrl(info));
   } catch (err) {
-    console.log('Error while sending mail', err);
+    logger.error(err);
   }
 }
 

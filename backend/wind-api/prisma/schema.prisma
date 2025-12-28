@@ -22,3 +22,18 @@ model User {
   updatedAt DateTime @updatedAt
   createdAt DateTime @default(now())
 }
+
+model Count {
+  id        Int      @id @default(autoincrement()) @db.Integer
+  type      String   @db.VarChar(255)
+  count     Int      @db.Integer
+  createdAt DateTime @default(now())
+}
+
+model Log {
+  id        Int      @id @default(autoincrement()) @db.Integer
+  level     String   @db.VarChar(255)
+  message   String   @db.Text
+  meta      Json?    @db.Json
+  timestamp DateTime @default(now())
+}

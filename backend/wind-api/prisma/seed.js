@@ -21,7 +21,7 @@ async function main() {
 
   await prisma.user.create({
     data: {
-      email: '849529321@qq.com',
+      email: '849529@qq.com',
       name: 'wind',
       password: '123123',
     },

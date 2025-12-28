@@ -26,8 +26,11 @@
     "ioredis": "^5.8.2",
     "jsonwebtoken": "^9.0.3",
     "morgan": "^1.10.1",
+    "node-schedule": "^2.1.1",
     "nodemailer": "^7.0.12",
-    "pg": "^8.16.3"
+    "pg": "^8.16.3",
+    "winston": "^3.19.0",
+    "winston-transport": "^4.9.0"
   },
   "devDependencies": {
     "nodemon": "^3.1.10",

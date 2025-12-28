@@ -1,5 +1,6 @@
 import amqplib from 'amqplib';
 
+import logger from './logger.js';
 import { sendMail } from './mailer.js';
 
 let MQConnection = null;
@@ -18,7 +19,7 @@ async function connectToRabbitMQ() {
     closeRabbitMQ();
     MQConnection = null;
     MQChannel = null;
-    console.error('MQ 连接失败 =>> ', error);
+    logger.error('[rabbitmq] 连接失败', error);
   }
 }
 
@@ -37,7 +38,7 @@ async function mailProducer(msgData) {
     const msg = JSON.stringify(msgData);
     MQChannel.sendToQueue(QUEUE_NAME, Buffer.from(msg), { persistent: true });
   } catch (error) {
-    console.log('邮件队列生产者错误 =>> ', error);
+    logger.error('[MQ] 邮件消息发送失败', error);
   }
 }
 
@@ -56,7 +57,7 @@ async function mailConsumer() {
         } catch (error) {
           // 如果处理失败，可以选择拒绝消息，将消息从队列中删除
           // MQChannel.nack(msg, false, false);
-          console.log('消息处理失败 =>> ', error);
+          logger.error('邮件消息处理失败', error);
         }
         // MQChannel.ack(msg);
       },
@@ -66,9 +67,9 @@ async function mailConsumer() {
       },
     );
 
-    console.log('mailConsumer =>> ', '邮件队列消费者已启动');
+    logger.info('mailConsumer =>> 邮件队列消费者已启动');
   } catch (error) {
-    console.log('邮件队列消费者错误 =>> ', error);
+    logger.error('[MQ] 消息消费者创建失败', error);
   }
 }
 

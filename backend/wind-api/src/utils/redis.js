@@ -1,6 +1,8 @@
 // src/redisClient.js
 import { Redis } from 'ioredis';
 
+import logger from './logger.js';
+
 let redisClient = null;
 
 function getRedisClient() {
@@ -11,7 +13,7 @@ function getRedisClient() {
       port: process.env.REDIS_PORT || 6379,
       password: process.env.REDIS_PASSWORD || '',
       retryStrategy(times) {
-        if (times > 5) {
+        if (times > 3) {
           return null; // Stop retrying after 5 attempts
         }
         return Math.min(times * 50, 500); // Reconnect after
@@ -19,15 +21,15 @@ function getRedisClient() {
     });
 
     redisClient.on('error', err => {
-      console.error('❌ Redis Client Error:', err);
+      logger.error('❌ [redis] 连接失败', err);
     });
 
     redisClient.on('connect', () => {
-      console.log('✅ Connected to Redis');
+      logger.info('✅ Connected to Redis');
     });
 
     redisClient.on('ready', () => {
-      console.log('🚀 Redis client is ready');
+      logger.info('🚀 Redis client is ready');
     });
   }
 

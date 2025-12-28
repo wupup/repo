@@ -12,11 +12,14 @@
   <div>TEST</div>
 
   <script>
-    fetch('/api/hero/list')
-      .then(res => res.json())
-      .then(data => {
-        console.log(data);
-      });
+    const token = '';
+    const host = 'localhost:3000';
+
+    // 建立 SSE 连接
+    const eventSource = new EventSource(`http://${host}/user/count?token=${token}`);
+    eventSource.addEventListener('message', (message) => {
+      console.log("message =>> ", message)
+    });
   </script>
 </body>
 

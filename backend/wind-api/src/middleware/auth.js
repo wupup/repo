@@ -5,7 +5,7 @@ import { failure } from '../utils/response.js';
 
 export function userAuth(req, res, next) {
   try {
-    const { token } = req.headers;
+    const { token } = req.headers || req.query.token;
     if (!token) {
       throw new HttpErrors.Unauthorized('未授权');
     }

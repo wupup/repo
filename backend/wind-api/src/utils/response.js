@@ -1,5 +1,6 @@
-import Errors from 'http-errors';
+import HttpErrors from 'http-errors';
 
+import logger from './logger.js';
 import { RES_CODE } from './contents.js';
 
 function success(res, data = {}, message = 'success') {
@@ -12,22 +13,23 @@ function success(res, data = {}, message = 'success') {
   res.json(result);
 }
 
-function failure(res, err, message = 'failure') {
+function failure(res, err) {
   const result = {
     code: RES_CODE.ERROR,
     success: false,
-    message: err.message || message,
+    message: err.message,
     data: null,
   };
-
-  console.error('failure error =>> ', err.name, err.status, err.message);
 
   if (err.name === 'TokenExpiredError' || err.name === 'JsonWebTokenError') {
     result.code = RES_CODE.TOKEN_ERROR;
     result.message = 'token错误或已过期';
-  } else if (Errors.isHttpError(err)) {
+  } else if (HttpErrors.isHttpError(err)) {
     result.code = err.status || RES_CODE.ERROR;
     result.message = err.message;
+  } else {
+    result.message = '服务器错误';
+    logger.error('服务器错误', err);
   }
 
   res.json(result);
