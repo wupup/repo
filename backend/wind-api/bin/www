@@ -1,26 +1,45 @@
 #!/usr/bin/env node
 
 import http from 'http';
+// import cluster from 'cluster';
 
 import app from '../src/app.js';
 
-/**
- * Get port from environment and store in Express.
- */
-const port = normalizePort(process.env.PORT || '8000');
-app.set('port', port);
+// const PROCESS_COUNT = process.env.PROCESS_COUNT;
 
-/**
- * Create HTTP server.
- */
-const server = http.createServer(app);
+// 开启nodejs多进程
+// console.log('是否主进程： =>> ', cluster.isPrimary);
+// if (cluster.isPrimary) {
+//   for (let i = 0; i < PROCESS_COUNT; i++) {
+//     cluster.fork();
+//   }
+// } else {
+//   setupServer();
+// }
 
-/**
- * Listen on provided port, on all network interfaces.
- */
-server.listen(port);
-server.on('error', onError);
-server.on('listening', onListening);
+setupServer();
+
+function setupServer() {
+  /**
+   * Get port from environment and store in Express.
+   */
+  const port = normalizePort(process.env.PORT || '8000');
+  app.set('port', port);
+
+  /**
+   * Create HTTP server.
+   */
+  const server = http.createServer(app);
+
+  /**
+   * Listen on provided port, on all network interfaces.
+   */
+  server.listen(port);
+  server.on('error', onError);
+  server.on('listening', () => {
+    onListening(server);
+  });
+}
 
 /**
  * Event listener for HTTP server "error" event.
@@ -52,7 +71,7 @@ function onError(error) {
  * Event listener for HTTP server "listening" event.
  */
 
-function onListening() {
+function onListening(server) {
   const addr = server.address();
   const bind = typeof addr === 'string' ? 'pipe ' + addr : 'port ' + addr.port;
   console.log('Listening on ' + bind);
