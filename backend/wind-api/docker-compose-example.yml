@@ -1,6 +1,23 @@
 # docker-compose wind-api
 
 services:
+  app:
+    build: .
+    image: wind-api:${APP_VERSION}
+    environment:
+      - APP_VERSION=${APP_VERSION}
+    ports:
+      - "3000:3000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+    networks:
+      - wind-app-network
+
   postgres:
     image: postgres:18.1
     container_name: wind-api-postgres

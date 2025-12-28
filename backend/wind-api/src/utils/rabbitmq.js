@@ -15,11 +15,17 @@ async function connectToRabbitMQ() {
     MQChannel = await MQConnection.createChannel();
     await MQChannel.assertQueue(QUEUE_NAME, { durable: true });
   } catch (error) {
+    closeRabbitMQ();
+    MQConnection = null;
+    MQChannel = null;
     console.error('MQ 连接失败 =>> ', error);
   }
 }
 
 function closeRabbitMQ() {
+  if (MQChannel) {
+    MQChannel.close();
+  }
   if (MQConnection) {
     MQConnection.close();
   }
@@ -59,6 +65,8 @@ async function mailConsumer() {
         noAck: true,
       },
     );
+
+    console.log('mailConsumer =>> ', '邮件队列消费者已启动');
   } catch (error) {
     console.log('邮件队列消费者错误 =>> ', error);
   }

@@ -22,7 +22,6 @@ console.log('crypto =>> ', crypto.randomBytes(32).toString('hex'));
 
 (async () => {
   await mailConsumer();
-  console.log('mailConsumer =>> ', '邮件队列消费者已启动');
 })();
 
 app.use(morgan('combined'));
