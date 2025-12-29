@@ -1,7 +1,7 @@
 import HttpErrors from 'http-errors';
 
 import logger from './logger.js';
-import { RES_CODE } from './contents.js';
+import { RES_CODE } from '../config/contents.js';
 
 function success(res, data = {}, message = 'success') {
   const result = {

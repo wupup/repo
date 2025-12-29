@@ -22,21 +22,21 @@ const transporter = createTransport({
 async function sendMail(mailAddress, subject, html) {
   try {
     await transporter.verify();
-    logger.info('Server is ready to take our messages');
+    logger.debug('Server is ready to take our messages');
 
     const info = await transporter.sendMail({
       from: process.env.MAILER_USER, // sender address
       to: mailAddress, // list of recipients
       subject, // subject line
       html,
-      // text: 'Hello world?', // plain text body
+      // text: 'Hello world!', // plain text body
     });
 
-    logger.info('Message sent: ' + info.messageId);
+    logger.debug('Message sent: ' + info.messageId);
     // Preview URL is only available when using an Ethereal test account
-    logger.info('Preview URL: ' + getTestMessageUrl(info));
+    logger.debug('Preview URL: ' + getTestMessageUrl(info));
   } catch (err) {
-    logger.error(err);
+    logger.error('[function:sendMail] 邮件发送失败', err);
   }
 }
 

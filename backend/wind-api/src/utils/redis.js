@@ -65,18 +65,27 @@ async function delKey(key) {
 }
 
 async function getDataWithCache(key, getData) {
-  const cachedData = await getKey(key);
-  if (cachedData) {
-    return cachedData;
-  }
-  let data = null;
-  if (typeof getData === 'function') {
-    data = await getData();
+  let _getData = null;
+  if (typeof getData !== 'function') {
+    _getData = () => getData;
   } else {
-    data = getData;
+    _getData = getData;
   }
-  await setKey(key, data);
-  return data;
+
+  try {
+    const cachedData = await getKey(key);
+    if (cachedData) {
+      return cachedData;
+    }
+
+    const data = await _getData();
+    await setKey(key, data);
+
+    return data;
+  } catch (error) {
+    logger.error('[function:getDataWithCache]', error);
+    return await _getData();
+  }
 }
 
 export default {

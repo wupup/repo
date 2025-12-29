@@ -12,13 +12,18 @@
   <div>TEST</div>
 
   <script>
-    const token = '';
+    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImVtYWlsIjoiMTI1QHFxLmNvbSIsImlhdCI6MTc2NzAxNzQ1MiwiZXhwIjoxNzY5NjA5NDUyfQ.90JiNDfaK8y1LBQYg7VAHG46Y41ghT_tUA6euKLlzck';
     const host = 'localhost:3000';
 
     // 建立 SSE 连接
-    const eventSource = new EventSource(`http://${host}/user/count?token=${token}`);
+    const eventSource = new EventSource(`http://${host}/admin/sse/info?token=${token}`);
     eventSource.addEventListener('message', (message) => {
-      console.log("message =>> ", message)
+      console.log("message =>> ", message, JSON.parse(message.data));
+    });
+
+    const eventSource2 = new EventSource(`http://${host}/user/count?token=${token}`);
+    eventSource2.addEventListener('message', (message) => {
+      console.log("count message =>> ", JSON.parse(message.data));
     });
   </script>
 </body>

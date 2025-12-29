@@ -1,29 +1,13 @@
-import HttpErrors from 'http-errors';
-
-import logger from '../utils/logger.js';
 import { success, failure } from '../utils/response.js';
 import { prisma } from '../utils/prisma.js';
+import { addSSERequest, writeDataToSSE } from '../utils/sse-manage.js';
+import { writeSSEInfo } from './admin-sse.js';
 
-const MAX_LEN = 10;
-const clientsList = [];
+const SSE_TYPE = 'userCount';
 
-function initStreamSSE(req, res) {
+function initUsersCountSSE(req, res) {
   try {
-    res.setHeader('Content-Type', 'text/event-stream');
-    res.setHeader('Cache-Control', 'no-cache');
-    res.setHeader('Connection', 'keep-alive');
-
-    clientsList.push(res);
-
-    if (clientsList.size > MAX_LEN) {
-      const firstReq = clientsList.shift();
-      logger.warn('StreamSSE: usersCount =>> 超出最大连接数');
-      failure(firstReq, new HttpErrors.TooManyRequests('超出最大连接数'));
-    }
-
-    res.on('close', () => {
-      res.end();
-    });
+    addSSERequest(SSE_TYPE, req, res);
   } catch (error) {
     failure(res, error);
   }
@@ -36,9 +20,7 @@ async function usersCount() {
     count,
   };
 
-  for (const client of clientsList) {
-    client.write(`data: ${JSON.stringify(data)}\n\n`);
-  }
+  writeDataToSSE(SSE_TYPE, data);
 }
 
-export { initStreamSSE, usersCount };
+export { initUsersCountSSE, usersCount };

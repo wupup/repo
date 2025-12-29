@@ -7,22 +7,24 @@ import redis from '../utils/redis.js';
 import logger from '../utils/logger.js';
 import { validateEmail } from '../utils/validator.js';
 import { sendRegisterSuccessMail } from '../utils/mailer.js';
-import { initStreamSSE, usersCount } from '../streams/users-count.js';
+import { initUsersCountSSE, usersCount } from '../streams/users-count.js';
 
 const getUserById = async id => {
   id = Number(id);
   if (!id) throw new HttpErrors.BadRequest('缺少id参数');
 
-  const user = await prisma.user.findUnique({
-    where: { id },
-    omit: {
-      password: true,
-      createdAt: true,
-      updatedAt: true,
-    },
+  const user = await redis.getDataWithCache(`user:${id}`, async () => {
+    return await prisma.user.findUnique({
+      where: { id },
+      omit: {
+        password: true,
+        createdAt: true,
+        updatedAt: true,
+      },
+    });
   });
 
-  if (!user) throw new HttpErrors.NotFound('未找到该用户');
+  if (!user) throw new HttpErrors.NotFound('用户不存在');
 
   return user;
 };
@@ -52,7 +54,7 @@ const validateUserPassword = async (account, password) => {
     },
   });
 
-  if (!user) throw new HttpErrors.NotFound('未找到该用户');
+  if (!user) throw new HttpErrors.NotFound('用户不存在');
 
   const isValid = bcrypt.compareSync(password, user.password);
 
@@ -84,10 +86,15 @@ const filterUserBody = req => {
 
 const get_count_users_sse = async (req, res) => {
   try {
-    initStreamSSE(req, res);
-    setInterval(async () => {
+    initUsersCountSSE(req, res);
+
+    const timerId = setInterval(async () => {
       await usersCount();
-    }, 5000);
+    }, 3000);
+
+    res.on('close', () => {
+      clearInterval(timerId);
+    });
   } catch (error) {
     failure(res, error);
   }
